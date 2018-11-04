@@ -10,3 +10,69 @@ a {
 .active {
     color: green;
 }
+
+issuetracker {
+    width: 780px;
+    margin: 0 auto;
+}
+
+projects {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#project-list {
+    max-height: 150px;
+    overflow-y: scroll;
+    flex-basis: 50%;
+}
+
+#project-list > project {
+    display: block;
+    border-bottom: 1px solid grey;
+    padding: 10px 0 10px 10px;
+    height: 30px;
+}
+
+#project-list > project:last-of-type {
+    border-bottom: none;
+}
+
+#project-list h3 {
+    margin: 0;
+}
+
+#project-list > project:hover {
+    background-color: lightgrey;
+}
+
+#project-new > input{
+    height: 30px;
+}
+
+#issue-list {
+    height: 300px;
+    overflow-y: auto;
+}
+
+#issue-list > issue {
+    display: flex;
+    border-bottom: 1px solid grey;
+    padding: 10px 0 10px 10px;
+}
+
+#issue-list > issue:hover {
+    background-color: lightgrey;
+}
+
+#issue-list > issue:last-of-type {
+    border: none;
+}
+
+#issue-list > issue.done {
+    background-color: lightgreen;
+}
+
+issue > input {
+    align-self: flex-end;
+}

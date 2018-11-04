@@ -1,12 +1,12 @@
 <issues>
     <h1>Issues</h1>
-    <section>
+    <section id="issue-new">
         <form onsubmit="{save}">
             <input type="text" onkeyup="{edit}" ref="input" placeholder="New Issue">
             <button disabled={!text}>Save</button>
         </form>
     </section>
-    <section>
+    <section id="issue-list">
         <issue each="{issues[this.projectId]}" data="{this}"></issue>
     </section>
 
@@ -22,7 +22,7 @@
         ],
         [
             {name:"project2s"},
-            {name:"projects2222"}
+            {name:"projects2222", done: true}
         ]
     ]
 
