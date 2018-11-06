@@ -5,6 +5,7 @@
     <script>
         updateDone(e) {
             this.done = e.target.checked;
+            IssueDatabaseService.updateIssue(this);
         }
     </script>
 
