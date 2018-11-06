@@ -4,11 +4,17 @@
         <input type="text" placeholder="New project">
         <input type="button" value="Save">
     </section>
-    <issues></issues>
-
+    <issue-list></issue-list>
+    <section id="issue-new">
+        <form onsubmit="{save}">
+            <input type="text" onkeyup="{edit}" ref="input" placeholder="New Issue">
+            <button disabled={!text}>Save</button>
+        </form>
+    </section>
     this.active;
 
     changeProject(e) {
-        this.tags.issues.changeProject(e.item.id);
+        console.log(this.tags);
+        this.tags["issue-list"].changeProject(e.item.id);
     }
 </issuetracker>
