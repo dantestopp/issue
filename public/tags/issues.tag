@@ -7,24 +7,17 @@
         </form>
     </section>
     <section id="issue-list">
-        <issue each="{issues[this.projectId]}" data="{this}"></issue>
+        <issue each="{issues}" data="{this}"></issue>
     </section>
 
-    switchProject(projectId) {
-        this.projectId = projectId;
-        return this;
+    this.issues = [];
+
+    changeProject(projectId) {
+        IssueDatabaseService.getIssuesFromProject(projectId)
+            .then((issues) => this.issues = issues)
+            .then(this.update);
     }
 
-    this.issues = [
-        [
-            {name: "test"},
-            {name: "tes2t"}
-        ],
-        [
-            {name:"project2s"},
-            {name:"projects2222", done: true}
-        ]
-    ]
 
     edit(e) {
         this.text = e.target.value;

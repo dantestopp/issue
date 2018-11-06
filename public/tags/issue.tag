@@ -1,5 +1,5 @@
 <issue class="{done: this.done}">
-    <p>{name}</p>
+    <p>{title}</p>
     <input type="checkbox" onchange="{updateDone}" checked="{this.done}">
 
     updateDone(e) {

@@ -1,9 +1,14 @@
 <issuetracker>
-    <projects></projects>
+    <project-list></project-list>
+    <section id="project-new">
+        <input type="text" placeholder="New project">
+        <input type="button" value="Save">
+    </section>
     <issues></issues>
 
-    this.on('mount', function() {
-        this.tags.issues.switchProject(this.tags.projects.active).update();
-        console.log(this.tags.issues.projectId);
-    });
+    this.active;
+
+    changeProject(e) {
+        this.tags.issues.changeProject(e.item.id);
+    }
 </issuetracker>

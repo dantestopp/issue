@@ -1,3 +1,3 @@
 <project>
-    <h3 class="{ active: id == this.opts.data.active }">{name}</h3>
+    <h3>{title}</h3>
 </project>
