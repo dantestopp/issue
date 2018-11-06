@@ -1,5 +1,5 @@
-<issue-list>
-    <issue each="{issues}" data="{this}"></issue>
+<issue-list class="list-group">
+    <issue each="{issues}" data="{this}" />
 
     <script>
     this.issues = [];

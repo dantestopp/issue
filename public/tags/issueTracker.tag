@@ -1,4 +1,4 @@
-<issuetracker class="container">
+<issuetracker>
     <h1>Issue Tracker</h1>
     <project-list change-project="{changeProject}"></project-list>
     <section id="project-new">
