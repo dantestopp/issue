@@ -19,7 +19,11 @@ class ProjectDatabaseService {
                     .then(json => Promise.all(json).then(data => data));
     }
 
-    static storeProjectIdToLocalStorage(id) {
+    static saveProject(project) {
+
+    }
+
+    static saveProjectIdToLocalStorage(id) {
         let projectIds = this.loadProjectIdsFromLocalStorage();
         projectIds.push(id);
         localStorage.setItem('projects', JSON.stringify(projectIds));
