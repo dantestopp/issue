@@ -1,11 +1,7 @@
 <issuetracker>
     <h1>Issue Tracker</h1>
     <project-list change-project="{changeProject}"></project-list>
-    <section id="project-new">
-        <input type="text" placeholder="New project">
-        <input type="button" value="Save">
-    </section>
-
+    <project-form />
     <issue-form add-issue="{this.addNewIssueToList}"/>
     <issue-list />
 
