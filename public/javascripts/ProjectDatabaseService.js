@@ -20,7 +20,18 @@ class ProjectDatabaseService {
     }
 
     static saveProject(project) {
-
+        return fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/", {
+            method: "POST",
+            body: JSON.stringify(this.cleanProjectObject(project)),
+            headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            }
+        }).then(response =>
+                response.json().then((json) => {
+                    this.saveProjectIdToLocalStorage(json.id);
+                    return json;
+                })
+        ).catch(err => console.log(err));
     }
 
     static saveProjectIdToLocalStorage(id) {
@@ -28,4 +39,15 @@ class ProjectDatabaseService {
         projectIds.push(id);
         localStorage.setItem('projects', JSON.stringify(projectIds));
     }
+
+    static cleanProjectObject(project) {
+        return Object.assign({}, {
+            id: project.id,
+            title: project.title,
+            active: project.active,
+            client_id: project.client_id,
+            created_at: project.created_at,
+            updated_at: project.updated_at
+         });
+     }
 }
