@@ -1,18 +1,20 @@
 <issue-form>
     <form onsubmit="{this.onFormSubmit}" class="form-inline">
-        <label for="issue-priority">Priority</label>
-        <select ref="issue-priority" id="issue-priority" class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </select>
-        <div class="form-group">
+        <div class="input-group mb-4">
+            <label for="issue-priority">Priority</label>
+            <select ref="issue-priority" id="issue-priority" class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </select>
+        </div>
+        <div class="input-group mb-4">
             <label for="issue-title">Title</label>
             <input ref="issue-title"
                     type="text" class="form-control"
                     id="issue-title" placeholder="A new issue" />
         </div>
-        <button type="submit" class="btn btn-success mb-2">Submit</button>
+        <button type="submit" class="btn btn-success mb-4">Submit</button>
     </form>
 
     <script>
