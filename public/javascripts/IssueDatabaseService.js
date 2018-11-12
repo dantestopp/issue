@@ -1,3 +1,6 @@
+const DELETE = "DELETE";
+const UPDATE = "PUT";
+
 class IssueDatabaseService {
 
     static loadIssuesFromAPI(projectId) {
@@ -7,6 +10,16 @@ class IssueDatabaseService {
 
     static getIssuesFromProject(projectId) {
         return this.loadIssuesFromAPI(projectId).then(data => data);
+    }
+
+    static sendIssueToAPI(issue, type) {
+        return fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues/" + issue.id, {
+            method: type,
+            body: JSON.stringify(this.cleanIssueObject(issue)),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            }
+        });
     }
 
     static saveIssue(projectId, issue) {
@@ -20,13 +33,11 @@ class IssueDatabaseService {
     }
 
     static updateIssue(issue) {
-        fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues/" + issue.id, {
-            method: "PUT",
-            body: JSON.stringify(this.cleanIssueObject(issue)),
-            headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            }
-        });
+        return this.sendIssueToAPI(issue, UPDATE);
+    }
+
+    static deleteIssue(issue) {
+        return this.sendIssueToAPI(issue, DELETE);
     }
 
     static cleanIssueObject(issue) {
