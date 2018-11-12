@@ -10,7 +10,9 @@
             <p>{new Date(due_date).toDateString()}</p>
         </div>
         <div class="col col-sm-1">
-            <button onclick="{this.deleteIssue}" class="btn btn-danger">Delete</button>
+            <button onclick="{this.deleteIssue}" class="btn btn-danger">
+                <i class="fas fa-trash"></i>
+            </button>
         </div>
     </div>
 

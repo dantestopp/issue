@@ -1,7 +1,7 @@
 <project-form>
     <form onsubmit="{this.onFormSubmit}">
         <input ref="project-title" type="text" placeholder="New project">
-        <button class="btn btn-success">Save</button>
+        <button class="btn btn-success"><i class="fas fa-plus"></i> New Project</button>
     </form>
 
     <script>

@@ -22,7 +22,9 @@
                     type="text" class="form-control"
                     id="issue-title" placeholder="A new issue" />
         </div>
-        <button type="submit" class="btn btn-success mb-2">Submit</button>
+        <button type="submit" class="btn btn-success mb-2">
+            <i class="fas fa-plus"></i> New Issue
+        </button>
     </form>
 
     <script>

@@ -1,5 +1,5 @@
 <issuetracker>
-    <h1>Issue Tracker</h1>
+    <h1><i class="fas fa-calendar-check"></i> Issue Tracker</h1>
     <project-list change-project="{changeProject}"></project-list>
     <project-form add-project="{this.addNewProjectToList}"/>
     <issue-form add-issue="{this.addNewIssueToList}"/>
