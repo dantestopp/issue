@@ -1,6 +1,9 @@
 <issue-list class="list-group">
     <loading if="{this.is_loading}" />
     <issue each="{issues}" data="{this}" />
+    <div if="{issues.length == 0}" class="list-group-item">
+        <p>No issues in this project</p>
+    </div>
 
     <script>
     this.issues = [];
