@@ -33,7 +33,7 @@
         });
     };
 
-    this.on('update', () => this.sortIssuesBy());
+    this.on('update', this.sortIssuesBy);
     </script>
 
 </issue-list>
