@@ -1,30 +1,47 @@
 <issue-form>
-    <form onsubmit="{this.onFormSubmit}" class="form-inline">
-        <div class="form-group mb-2">
-            <label for="issue-priority">Priority</label>
-            <select ref="issue-priority" id="issue-priority" class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
+    <form onsubmit="{this.onFormSubmit}" class="form">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="issue-title">Title</label>
+                    <input ref="issue-title"
+                            type="text" class="form-control"
+                            id="issue-title" placeholder="A new issue" />
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <label for="issue-date">Start date</label>
+                    <input type="date"
+                            class="form-control"
+                            ref="issue-date"
+                            id="issue-date"
+                            value="{this.getToday()}">
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <label for="issue-priority">Priority</label>
+                    <select ref="issue-priority" id="issue-priority" class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div class="form-group mb-4">
-            <label for="issue-date">Start date</label>
-            <input type="date"
-                    class="form-control"
-                    ref="issue-date"
-                    id="issue-date"
-                    value="{this.getToday()}">
+        
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-plus"></i> New Issue
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="form-group mb-4">
-            <label for="issue-title">Title</label>
-            <input ref="issue-title"
-                    type="text" class="form-control"
-                    id="issue-title" placeholder="A new issue" />
-        </div>
-        <button type="submit" class="btn btn-success mb-2">
-            <i class="fas fa-plus"></i> New Issue
-        </button>
     </form>
 
     <script>

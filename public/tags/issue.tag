@@ -1,19 +1,20 @@
 <issue class="btn list-group-item list-group-item-action container">
-    <div class="row">
-        <div class="col col-sm-1">
-            <input type="checkbox" onchange="{this.updateDone}" checked="{this.done}">
+    <div class="form-inline">
+        <div class="form-group col-sm-6">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" onchange="{this.updateDone}" checked="{this.done}">
+            {title} <span class="badge badge-primary ml-1">{this.priority}</span>
+            </label>
         </div>
-        <div class="col col-sm-8">
-            <p>{title} <span class="badge badge-primary">{this.priority}</span></p>
+
+        <div class="form-group col-sm-4">
+            <label>{new Date(due_date).toDateString()}</label>
         </div>
-        <div class="col col-sm-2">
-            <p>{new Date(due_date).toDateString()}</p>
-        </div>
-        <div class="col col-sm-1">
-            <button onclick="{this.deleteIssue}" class="btn btn-danger">
+        <div class="form-group col-sm-2">
+            <button onclick="{this.deleteIssue}" class="btn btn-danger ml-1">
                 <i class="fas fa-trash"></i>
             </button>
-        </div>
+        </div>  
     </div>
 
     <script>

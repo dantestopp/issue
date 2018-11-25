@@ -1,7 +1,12 @@
 <issue-list class="list-group">
+    <h2 class="mt-3" >Issue List</h2>
+
     <loading if="{this.is_loading}" />
-    <issue each="{issues}" data="{this}" />
-    <div if="{issues.length == 0}" class="list-group-item">
+    
+    <div  if="{!this.is_loading}" class="btn-group-vertical">
+        <issue each="{issues}" data="{this}" />
+    </div>
+    <div if="{!this.is_loading && issues.length == 0}" class="list-group-item">
         <p>No issues in this project</p>
     </div>
 

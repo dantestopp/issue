@@ -1,7 +1,11 @@
 <project-list class="list-group">
+    <h2 class="mt-3" >Project List</h2>
+
     <error if="{loading_failed}" message="Failed to load projects, check your internet connection" />
     <loading if="{is_loading}"/>
-    <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" />
+    <div class="btn-group-vertical">
+        <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" />
+    </div>
     <script>
         this.projects = [];
 

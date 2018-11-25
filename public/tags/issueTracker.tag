@@ -1,9 +1,19 @@
 <issuetracker>
-    <h1><i class="fas fa-calendar-check"></i> Issue Tracker</h1>
-    <project-list change-project="{this.changeProject}"></project-list>
-    <project-form add-project="{this.addNewProjectToList}"/>
-    <issue-form add-issue="{this.addNewIssueToList}"/>
-    <issue-list />
+    <div class="row">
+        <div class="col-sm-12">
+            <h1><i class="fas fa-calendar-check"></i> Issue Tracker</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <project-form add-project="{this.addNewProjectToList}"/>
+            <project-list change-project="{this.changeProject}"></project-list>
+        </div>
+        <div class="col-md-6">
+            <issue-form add-issue="{this.addNewIssueToList}"/>
+            <issue-list />
+        </div>
+    </div>
 
     <script>
 
