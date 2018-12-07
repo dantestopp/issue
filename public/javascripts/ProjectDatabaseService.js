@@ -7,7 +7,7 @@ class ProjectDatabaseService {
     static loadProjectsFromAPI() {
         let projectIds = this.loadProjectIdsFromLocalStorage();
         let projectRequests = projectIds.map((id) =>
-            fetch('http://zhaw-issue-tracker-api.herokuapp.com/api/projects/' + id)
+            fetch('https://zhaw-issue-tracker-api.herokuapp.com/api/projects/' + id)
         );
 
         return Promise.all(projectRequests)
@@ -20,7 +20,7 @@ class ProjectDatabaseService {
     }
 
     static saveProject(project) {
-        return fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/", {
+        return fetch("https://zhaw-issue-tracker-api.herokuapp.com/api/projects/", {
             method: "POST",
             body: JSON.stringify(this.cleanProjectObject(project)),
             headers: {
