@@ -4,7 +4,7 @@ const UPDATE = "PUT";
 class IssueDatabaseService {
 
     static loadIssuesFromAPI(projectId) {
-        return fetch('http://zhaw-issue-tracker-api.herokuapp.com/api/projects/' + projectId + "/issues")
+        return fetch('https://zhaw-issue-tracker-api.herokuapp.com/api/projects/' + projectId + "/issues")
             .then(response => response.json());
     }
 
@@ -13,7 +13,7 @@ class IssueDatabaseService {
     }
 
     static sendIssueToAPI(issue, type) {
-        return fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues/" + issue.id, {
+        return fetch("https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + issue.project_id + "/issues/" + issue.id, {
             method: type,
             body: JSON.stringify(this.cleanIssueObject(issue)),
             headers: {
@@ -23,7 +23,7 @@ class IssueDatabaseService {
     }
 
     static saveIssue(projectId, issue) {
-        fetch("http://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + projectId + "/issues", {
+        fetch("https://zhaw-issue-tracker-api.herokuapp.com/api/projects/" + projectId + "/issues", {
             method: "POST",
             body: JSON.stringify(issue),
             headers: {
