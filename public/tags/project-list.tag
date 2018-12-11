@@ -1,10 +1,12 @@
-<project-list class="list-group">
+<project-list>
     <h2 class="mt-3" >Project List</h2>
 
     <error if="{loading_failed}" message="Failed to load projects, check your internet connection" />
     <loading if="{is_loading}"/>
-    <div class="btn-group-vertical">
-        <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" is-selected="{this.selectedProjectId == id}" />
+    <div class="list-group-container"> 
+        <div class="btn-group-vertical list-group">
+            <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" is-selected="{this.selectedProjectId == id}" />
+        </div>
     </div>
     <script>
         this.projects = [];

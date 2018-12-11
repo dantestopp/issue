@@ -1,5 +1,11 @@
-.list-group{
-    max-height: 300px;
-    margin-bottom: 10px;
+.list-group-container {
+    max-height: 60vh;
     overflow-y: auto;
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+    .list-group-container {
+        max-height: 40vh;
+    }
 }

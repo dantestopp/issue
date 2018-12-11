@@ -1,16 +1,18 @@
-<issue-list class="list-group">
+<issue-list>
     <h2 class="mt-3" >Issue List</h2>
 
     <loading if="{this.is_loading}" />
-    
-    <div  if="{!this.is_loading}" class="btn-group-vertical">
-        <issue each="{issues}" data="{this}" />
-    </div>
-    <div if="{!this.is_loading && issues.length == 0 && this.activeProjectId != null}" class="list-group-item">
-        <p>No issues in this project</p>
-    </div>
-    <div if="{!this.is_loading && this.activeProjectId == null}" class="list-group-item">
-        <p>No project selected</p>
+
+    <div class="list-group-container"> 
+        <div if="{!this.is_loading}" class="btn-group-vertical list-group">
+            <issue each="{issues}" data="{this}" />
+        </div>
+        <div if="{!this.is_loading && issues.length == 0 && this.activeProjectId != null}" class="list-group-item">
+            <p>No issues in this project</p>
+        </div>
+        <div if="{!this.is_loading && this.activeProjectId == null}" class="list-group-item">
+            <p>No project selected</p>
+        </div>
     </div>
 
     <script>
