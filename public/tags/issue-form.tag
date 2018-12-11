@@ -5,7 +5,8 @@
                 <div class="form-group">
                     <label for="issue-title">Title</label>
                     <input ref="issue-title"
-                            type="text" class="form-control"
+                            type="text" class="form-control { is-invalid: this.isInvalidTitle }" 
+                            onkeyup="{this.onKeyUpTitle}"
                             id="issue-title" placeholder="A new issue" />
                 </div>
             </div>
@@ -14,8 +15,10 @@
                 <div class="form-group">
                     <label for="issue-date">Start date</label>
                     <input type="date"
-                            class="form-control"
+                            class="form-control { is-invalid: this.isInvalidDate }"
                             ref="issue-date"
+                            min="{this.getToday()}"
+                            onchange="{this.onchangeDate}"
                             id="issue-date"
                             value="{this.getToday()}">
                 </div>
@@ -46,9 +49,36 @@
 
     <script>
         this.activeProject = null;
+        this.isInvalidTitle = false;
+        this.isInvalidDate = false;
+
+        this.onKeyUpTitle = (e) => {
+            if (e.target.value != "") {
+                this.isInvalidTitle = false;
+            }
+        }        
+
+        this.onchangeDate = (e) => {
+            if (e.target.value != "") {
+                this.isInvalidDate = false;
+                return;
+            }
+        }
 
         this.onFormSubmit = (e) => {
             e.preventDefault();
+
+            console.log(this.refs['issue-date'].value);
+
+            if (this.refs['issue-title'].value == "") {
+                this.isInvalidTitle = true;
+                return;
+            }
+
+            if (this.refs['issue-date'].value == "") {
+                this.isInvalidDate = true;
+                return;
+            }
 
             let issue = {
                 done: false,
