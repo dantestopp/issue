@@ -23,8 +23,8 @@
 
     this.changeProject = (e) => {
         this.activeProject = e.item.id;
+        this.tags["issue-form"].changeProject(e.item.id);
         this.tags["issue-list"].changeProject(e.item.id);
-        this.tags["issue-form"].activeProject = e.item.id;
     }
 
     this.addNewIssueToList = (issue) => {

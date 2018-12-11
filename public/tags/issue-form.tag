@@ -7,7 +7,8 @@
                     <input ref="issue-title"
                             type="text" class="form-control { is-invalid: this.isInvalidTitle }" 
                             onkeyup="{this.onKeyUpTitle}"
-                            id="issue-title" placeholder="A new issue" />
+                            id="issue-title" placeholder="A new issue" 
+                            disabled="{this.activeProjectId == null}"/>
                 </div>
             </div>
 
@@ -20,17 +21,18 @@
                             min="{this.getToday()}"
                             onchange="{this.onchangeDate}"
                             id="issue-date"
-                            value="{this.getToday()}">
+                            value="{this.getToday()}"
+                            disabled="{this.activeProjectId == null}">
                 </div>
             </div>
 
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="issue-priority">Priority</label>
-                    <select ref="issue-priority" id="issue-priority" class="form-control">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    <select ref="issue-priority" id="issue-priority" class="form-control" disabled="{this.activeProjectId == null}">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
                     </select>
                 </div>
             </div>
@@ -39,7 +41,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" disabled="{this.activeProjectId == null}">
                         <i class="fas fa-plus"></i> New Issue
                     </button>
                 </div>
@@ -48,7 +50,7 @@
     </form>
 
     <script>
-        this.activeProject = null;
+        this.activeProjectId = null;
         this.isInvalidTitle = false;
         this.isInvalidDate = false;
 
@@ -63,6 +65,11 @@
                 this.isInvalidDate = false;
                 return;
             }
+        }
+
+        this.changeProject = (projectId) => {
+            this.activeProjectId = projectId;
+            this.update();
         }
 
         this.onFormSubmit = (e) => {
@@ -93,7 +100,7 @@
             this.refs['issue-priority'].value = 1;
             this.refs['issue-date'].value = this.getToday();
 
-            IssueDatabaseService.saveIssue(this.activeProject, issue);
+            IssueDatabaseService.saveIssue(this.activeProjectId, issue);
             this.opts.addIssue(issue);
         }
 
