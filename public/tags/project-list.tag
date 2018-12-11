@@ -4,10 +4,11 @@
     <error if="{loading_failed}" message="Failed to load projects, check your internet connection" />
     <loading if="{is_loading}"/>
     <div class="btn-group-vertical">
-        <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" />
+        <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" is-selected="{this.selectedProjectId == id}" />
     </div>
     <script>
         this.projects = [];
+        this.selectedProjectId = null;
 
         this.is_loading = true;
 
@@ -22,6 +23,8 @@
             });
 
         this.onProjectClicked = (e) => {
+            this.selectedProjectId = e.item.id;
+            this.update();
             opts.changeProject(e);
         }
     </script>
