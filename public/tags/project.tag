@@ -1,3 +1,3 @@
 <project class="btn list-group-item list-group-item-action {active: opts.isSelected}">
-    <h3>{title}</h3>
+    <h4 class="text-truncate">{title}</h4>
 </project>

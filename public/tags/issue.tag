@@ -1,10 +1,11 @@
 <issue class="btn list-group-item list-group-item-action container">
     <div class="form-inline">
         <div class="form-group col-sm-6">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" onchange="{this.updateDone}" checked="{this.done}">
-            {title} <span class="badge badge-primary ml-1">{this.priority}</span>
+            <input class="form-check-input pull-left" type="checkbox" onchange="{this.updateDone}" checked="{this.done}">
+            <label class="form-check-label text-truncate pull-left">
+                {title} 
             </label>
+            <span class="badge badge-primary ml-1">{this.priority}</span>
         </div>
 
         <div class="form-group col-sm-4">
@@ -27,8 +28,5 @@
             IssueDatabaseService.deleteIssue(this)
                 .then(this.unmount);
         }
-
-
-
     </script>
 </issue>
