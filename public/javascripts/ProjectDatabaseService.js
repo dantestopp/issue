@@ -12,36 +12,29 @@ class ProjectDatabaseService {
                     resolve(projects);        
             }
         );
-
-        // let projectRequests = projectIds.map((id) =>
-        //     fetch('https://zhaw-issue-tracker-api.herokuapp.com/api/projects/' + id)
-        // );
-
-        // return Promise.all(projectRequests)
-        //     .then(responses => responses.map(data => data.json()));
     }
 
     static saveProject(project) {
         this.updateProjectObject(project);
         this.saveProjectToLocalStorage(project);
 
+        fetch("https://zhaw-issue-tracker-api.herokuapp.com/api/projects/", {
+            method: "POST",
+            body: JSON.stringify(project),
+            headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            }
+        }).then(response =>
+                response.json().then((json) => {
+                    this.updateProjectIdToLocalStorage(json);
+                })
+        ).catch(err => console.log(err));
+
         return new Promise(
             (resolve, reject) => {
                 resolve(project);        
             }
         );
-
-        // return fetch("https://zhaw-issue-tracker-api.herokuapp.com/api/projects/", {
-        //     method: "POST",
-        //     body: JSON.stringify(newProject),
-        //     headers: {
-        //     "Content-Type": "application/json; charset=utf-8",
-        //     }
-        // }).then(response =>
-        //         response.json().then((json) => {
-        //             return json;
-        //         })
-        // ).catch(err => console.log(err));
     }
 
     static updateProjectObject(project) {
@@ -75,6 +68,16 @@ class ProjectDatabaseService {
     static saveProjectToLocalStorage(project) {
         let projects = this.loadProjectsFromLocalStorage();
         projects.push(project);
+        localStorage.setItem('projects', JSON.stringify(projects));
+    }
+
+    static updateProjectIdToLocalStorage(project) {
+        let projects = this.loadProjectsFromLocalStorage();
+        projects.forEach(savedProject => {
+            if (savedProject.client_id == project.client_id) {
+                savedProject.id = project.id;
+            }
+        });
         localStorage.setItem('projects', JSON.stringify(projects));
     }
 }
