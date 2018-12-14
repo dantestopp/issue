@@ -22,21 +22,17 @@
     this.text = "";
 
     this.changeProject = (e) => {
-        this.activeProject = e.item.id;
-        this.tags["issue-form"].changeProject(e.item.id);
-        this.tags["issue-list"].changeProject(e.item.id);
+        this.activeProject = e.item.client_id;
+        this.tags["issue-form"].changeProject(e.item.client_id);
+        this.tags["issue-list"].changeProject(e.item.client_id);
     }
 
     this.addNewIssueToList = (issue) => {
-        this.tags["issue-list"].issues.push(issue);
-        this.tags["issue-list"].update();
+        this.tags["issue-list"].addNewIssue(issue);
     }
 
     this.addNewProjectToList = (project) => {
-        this.tags["project-list"].projects.push(project);
-        this.tags["project-list"].update();
+        this.tags["project-list"].addNewProject(project);
     }
-
-
     </script>
 </issuetracker>

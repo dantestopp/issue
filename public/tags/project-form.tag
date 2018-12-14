@@ -36,18 +36,12 @@
         }
 
         let project = {
-            client_id: "1",
             title: this.refs['project-title'].value,
             active: true
         };
-
-        ProjectDatabaseService.saveProject(project)
-            .then(data => this.opts.addProject(data))
-            .then(() => {
-                this.refs['project-title'].value = '';
-            });
-
-
+        
+        this.opts.addProject(project);
+        this.refs['project-title'].value = '';
     }
     </script>
 

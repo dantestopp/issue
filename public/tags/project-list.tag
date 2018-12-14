@@ -5,12 +5,12 @@
     <loading if="{is_loading}"/>
     <div class="list-group-container"> 
         <div class="btn-group-vertical list-group">
-            <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" is-selected="{this.selectedProjectId == id}" />
+            <project onclick="{onProjectClicked}" each="{this.projects}" data="{this}" is-selected="{this.selectedProjectClientId == client_id}" />
         </div>
     </div>
     <script>
         this.projects = [];
-        this.selectedProjectId = null;
+        this.selectedProjectClientId = undefined;
 
         this.is_loading = true;
 
@@ -24,8 +24,15 @@
                 this.update();
             });
 
+        this.addNewProject = (project) => {
+            ProjectDatabaseService.saveProject(project).then(data => {
+                this.projects.push(data);
+                this.update();
+            });
+        }
+
         this.onProjectClicked = (e) => {
-            this.selectedProjectId = e.item.id;
+            this.selectedProjectClientId = e.item.client_id;
             this.update();
             opts.changeProject(e);
         }

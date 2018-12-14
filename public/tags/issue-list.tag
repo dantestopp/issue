@@ -7,24 +7,24 @@
         <div if="{!this.is_loading}" class="btn-group-vertical list-group">
             <issue each="{issues}" data="{this}" />
         </div>
-        <div if="{!this.is_loading && issues.length == 0 && this.activeProjectId != null}" class="list-group-item">
+        <div if="{!this.is_loading && issues.length == 0 && this.activeProjectClientId != null}" class="list-group-item">
             <p>No issues in this project</p>
         </div>
-        <div if="{!this.is_loading && this.activeProjectId == null}" class="list-group-item">
+        <div if="{!this.is_loading && this.activeProjectClientId == null}" class="list-group-item">
             <p>No project selected</p>
         </div>
     </div>
 
     <script>
     this.issues = [];
-    this.activeProjectId = null;
+    this.activeProjectClientId = null;
     this.sortBy = 'due_date';
 
-    this.changeProject = (projectId) => {
-        this.activeProjectId = projectId;
+    this.changeProject = (projectClientId) => {
+        this.activeProjectClientId = projectClientId;
         this.is_loading = true;
         this.update();
-        IssueDatabaseService.getIssuesFromProject(projectId)
+        IssueDatabaseService.getIssuesFromProject(projectClientId)
             .then((issues) => this.issues = issues)
             .then(() => {
                 this.is_loading = false;
@@ -42,6 +42,12 @@
                 return -1;
             }
         });
+    };
+
+    this.addNewIssue = (issue) => {
+        IssueDatabaseService.saveIssue(issue);
+        this.issues.push(issue);
+        this.update();
     };
 
     this.on('update', this.sortIssuesBy);

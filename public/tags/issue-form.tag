@@ -8,7 +8,7 @@
                             type="text" class="form-control { is-invalid: this.isInvalidTitle }" 
                             onkeyup="{this.onKeyUpTitle}"
                             id="issue-title" placeholder="A new issue" 
-                            disabled="{this.activeProjectId == null}"/>
+                            disabled="{this.activeProjectClientId == null}"/>
                 </div>
             </div>
 
@@ -22,14 +22,14 @@
                             onchange="{this.onchangeDate}"
                             id="issue-date"
                             value="{this.getToday()}"
-                            disabled="{this.activeProjectId == null}">
+                            disabled="{this.activeProjectClientId == null}">
                 </div>
             </div>
 
             <div class="col-sm-2">
                 <div class="form-group">
                     <label for="issue-priority">Priority</label>
-                    <select ref="issue-priority" id="issue-priority" class="form-control" disabled="{this.activeProjectId == null}">
+                    <select ref="issue-priority" id="issue-priority" class="form-control" disabled="{this.activeProjectClientId == null}">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success" disabled="{this.activeProjectId == null}">
+                    <button type="submit" class="btn btn-success" disabled="{this.activeProjectClientId == null}">
                         <i class="fas fa-plus"></i> New Issue
                     </button>
                 </div>
@@ -50,7 +50,7 @@
     </form>
 
     <script>
-        this.activeProjectId = null;
+        this.activeProjectClientId = null;
         this.isInvalidTitle = false;
         this.isInvalidDate = false;
 
@@ -67,15 +67,13 @@
             }
         }
 
-        this.changeProject = (projectId) => {
-            this.activeProjectId = projectId;
+        this.changeProject = (projectClientId) => {
+            this.activeProjectClientId = projectClientId;
             this.update();
         }
 
         this.onFormSubmit = (e) => {
             e.preventDefault();
-
-            console.log(this.refs['issue-date'].value);
 
             if (this.refs['issue-title'].value == "") {
                 this.isInvalidTitle = true;
@@ -92,15 +90,13 @@
                 title: this.refs['issue-title'].value,
                 due_date: this.refs['issue-date'].value,
                 priority: this.refs['issue-priority'].value,
-                client_id: "1",
-                project_client_id: "1"
+                project_client_id: this.activeProjectClientId
             };
 
             this.refs['issue-title'].value = '';
             this.refs['issue-priority'].value = 1;
             this.refs['issue-date'].value = this.getToday();
 
-            IssueDatabaseService.saveIssue(this.activeProjectId, issue);
             this.opts.addIssue(issue);
         }
 
