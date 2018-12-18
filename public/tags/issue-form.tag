@@ -5,9 +5,9 @@
                 <div class="form-group">
                     <label for="issue-title">Title</label>
                     <input ref="issue-title"
-                            type="text" class="form-control { is-invalid: this.isInvalidTitle }" 
+                            type="text" class="form-control { is-invalid: this.isInvalidTitle }"
                             onkeyup="{this.onKeyUpTitle}"
-                            id="issue-title" placeholder="A new issue" 
+                            id="issue-title" placeholder="A new issue"
                             disabled="{this.activeProjectClientId == null}"/>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-sm-5">
                 <div class="form-group">
@@ -55,10 +55,10 @@
         this.isInvalidDate = false;
 
         this.onKeyUpTitle = (e) => {
-            if (e.target.value != "") {
+            if (e.target.value.trim() != "") {
                 this.isInvalidTitle = false;
             }
-        }        
+        }
 
         this.onchangeDate = (e) => {
             if (e.target.value != "") {
@@ -75,7 +75,9 @@
         this.onFormSubmit = (e) => {
             e.preventDefault();
 
-            if (this.refs['issue-title'].value == "") {
+            let issueTitle = this.refs['issue-title'].value.trim();
+
+            if (issueTitle == "") {
                 this.isInvalidTitle = true;
                 return;
             }
@@ -87,7 +89,7 @@
 
             let issue = {
                 done: false,
-                title: this.refs['issue-title'].value,
+                title: issueTitle,
                 due_date: this.refs['issue-date'].value,
                 priority: this.refs['issue-priority'].value,
                 project_client_id: this.activeProjectClientId

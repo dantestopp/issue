@@ -4,7 +4,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="project-title">Title</label>
-                    <input ref="project-title" type="text" placeholder="New project" 
+                    <input ref="project-title" type="text" placeholder="New project"
                         class="form-control { is-invalid: this.isInvalid }" onkeyup="{this.onKeyUp}">
                 </div>
             </div>
@@ -30,16 +30,18 @@
     this.onFormSubmit = (e) => {
         e.preventDefault();
 
-        if (this.refs['project-title'].value == "") {
+        let projectTitle = this.refs['project-title'].value.trim();
+
+        if (projectTitle == "") {
             this.isInvalid = true;
             return;
         }
 
         let project = {
-            title: this.refs['project-title'].value,
+            title: projectTitle,
             active: true
         };
-        
+
         this.opts.addProject(project);
         this.refs['project-title'].value = '';
     }

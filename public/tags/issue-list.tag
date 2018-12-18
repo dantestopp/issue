@@ -1,9 +1,15 @@
 <issue-list>
     <h2 class="mt-3" >Issue List</h2>
 
+    <select onchange="{this.changeSort}" id="sortIssueBy" ref="sort-issues-by">
+        <option value="due_date" selected>Due Date</option>
+        <option value="title">Title</option>
+        <option value="priority">Priority</option>
+    </select>
+
     <loading if="{this.is_loading}" />
 
-    <div class="list-group-container"> 
+    <div class="list-group-container">
         <div if="{!this.is_loading}" class="btn-group-vertical list-group">
             <issue each="{issues}" data="{this}" />
         </div>
@@ -31,6 +37,11 @@
                 this.update();
             });
     };
+
+    this.changeSort = () => {
+        this.sortBy = this.refs['sort-issues-by'].value;
+        this.update();
+    }
 
     this.sortIssuesBy = () => {
         this.issues.sort((a, b) => {
