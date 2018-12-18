@@ -1,14 +1,16 @@
 <issue-list>
-    <h2 class="mt-3" >Issue List</h2>
+    <div class="row pr-3">
+        <h2 class="mt-3 col-sm-6" >Issue List</h2>
 
-    <select onchange="{this.changeSort}" id="sortIssueBy" ref="sort-issues-by">
-        <option value="due_date" selected>Due Date</option>
-        <option value="title">Title</option>
-        <option value="priority">Priority</option>
-    </select>
+        <select onchange="{this.changeSort}" id="sortIssueBy" ref="sort-issues-by" class="mt-3 mb-2 pl-3 form-control col-sm-6">
+            <option value="due_date" selected>Due Date</option>
+            <option value="title">Title</option>
+            <option value="priority">Priority</option>
+        </select>
+    </div>
 
     <loading if="{this.is_loading}" />
-
+    
     <div class="list-group-container">
         <div if="{!this.is_loading}" class="btn-group-vertical list-group">
             <issue each="{issues}" data="{this}" />
