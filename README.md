@@ -1,5 +1,6 @@
-# issue
-web3
+# Issue Tracker
+
+Project for Web 3
 
 Herkou: https://web3-issue.herokuapp.com/
 
